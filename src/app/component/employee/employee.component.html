@@ -1,0 +1,52 @@
+<mat-card>
+    <mat-card-header>
+        <!-- <h2>Employee listing</h2> -->
+        <button mat-raised-button color="primary" (click)="addEmployee()">Add New</button>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <!-- Employee 'Id' Definition -->
+            <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef> Employee Id </mat-header-cell>
+                <mat-cell *matCellDef="let employee"> {{employee.id}} </mat-cell>
+            </ng-container>
+          
+            <!-- Employee 'Name' Definition -->
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                <mat-cell *matCellDef="let employee"> {{employee.name}} </mat-cell>
+            </ng-container>
+          
+            <!-- Employee 'Salary' Definition -->
+            <ng-container matColumnDef="salary">
+                <mat-header-cell *matHeaderCellDef> Salary </mat-header-cell>
+                <mat-cell *matCellDef="let employee"> {{employee.salary | currency}} </mat-cell>
+            </ng-container>
+
+            <!-- Employee 'Date of Join' Definition -->
+            <ng-container matColumnDef="doj">
+                <mat-header-cell *matHeaderCellDef> Date of Join </mat-header-cell>
+                <mat-cell *matCellDef="let employee"> {{employee.doj | date}} </mat-cell>
+            </ng-container>
+
+            <!-- Employee 'Role' Definition -->
+            <ng-container matColumnDef="role">
+                <mat-header-cell *matHeaderCellDef> Role </mat-header-cell>
+                <mat-cell *matCellDef="let employee"> {{employee.role}} </mat-cell>
+            </ng-container>
+
+            <!-- Employee 'Action' Definition -->
+            <ng-container matColumnDef="action">
+                <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                <mat-cell *matCellDef="let employee"> 
+                    <button type="submit" mat-raised-button color="primary" (click)="editEmployee(employee.id)">Edit</button>
+                    <button type="submit" mat-raised-button color="accent" (click)="deleteEmployee(employee.id)">Delete</button>
+                </mat-cell>
+            </ng-container>
+          
+            <!-- Header and Row Declarations -->
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+          </mat-table>
+    </mat-card-content>
+</mat-card>
